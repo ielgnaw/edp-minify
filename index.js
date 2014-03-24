@@ -49,12 +49,8 @@ function processFile(sfile) {
 
 exports.start = function (args, opts) {
 
-    var source = args[0];
-    // console.log(args,opts, 111);
-
-    var commandArgs = {};
-    var isEnd = true;
-    var lastMatchKey = '';
+    // 生成minify文件的后缀名
+    var suffixName = opts.s || '.compiled';
 
     while (args.length) {
         // edp minify newtip.src.js    ,    aaa.js,    rrrer,   -o=output
@@ -85,16 +81,20 @@ exports.start = function (args, opts) {
             });
 
             if (sfile.read()) {
-                if (!opts.o) {
-                    console.log();
-                    // tfilename = sfile.filename + '.compiled';
-                    // tpath = path.resolve('.', tfilename + '.' + targetFileExtName);
-                    // console.log('未能获取到指定的输出文件，系统自动指定为：' + tpath);
-                }
-                else {
-                    // tfilename = opts.o.replace(sfileextPlus, '');
-                    // tpath = path.resolve('.', opts.o);
-                }
+                var targetFileName = sfile.fileName + suffixName;
+                var targetFileExtName = sfile.extName;
+                var targetFilePath = edp.path.dirname(sfile.filePath)
+                    + require('path').sep + targetFileName + targetFileExtName;
+
+                var targetFile = new File({
+                    fileName: targetFileName,
+                    extName: targetFileExtName,
+                    filePath: targetFilePath
+                });
+
+                targetFile.data = sfile.getMinifyData();
+                targetFile.write();
+
             }
 
 

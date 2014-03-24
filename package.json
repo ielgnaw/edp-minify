@@ -12,7 +12,10 @@
     "url": "git://github.com/ecomfe/edp-minify.git"
   },
   "dependencies": {
-    "edp-core": "~0.0.14"
+    "edp-core": "~0.0.14",
+    "uglify-js": "~2.4.12",
+    "html-minifier": "~0.5.4",
+    "uglifycss": "~0.0.5"
   },
   "contributors": [
       { "name": "leeight", "email" : "leeight@gmail.com" },
