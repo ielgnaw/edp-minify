@@ -15,7 +15,8 @@
     "edp-core": "~0.0.14",
     "uglify-js": "~2.4.12",
     "html-minifier": "~0.5.4",
-    "uglifycss": "~0.0.5"
+    "uglifycss": "~0.0.5",
+    "mkdirp": "~0.3.3"
   },
   "contributors": [
       { "name": "leeight", "email" : "leeight@gmail.com" },

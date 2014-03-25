@@ -12,105 +12,180 @@ var File = require('./lib/File');
 var CWD = process.cwd();
 
 var EXT = {
-    js: '.js'
+    JS: '.js'
+};
+
+/**
+ * 不合法的资源集合
+ *
+ * @type {Array.<Object>}
+ */
+var invalidResource = [];
+
+/**
+ * 获取文件夹内的js文件
+ *
+ * @param  {string} dir 目标文件夹
+ */
+function getJSFiles(dir) {
+    var ret  = [];
+    var list = fs.readdirSync(dir);
+    list.forEach(
+        function (file) {
+            var absolutePath = edp.path.resolve(dir, file);
+            var stat         = fs.statSync(absolutePath);
+            var extName      = edp.path.extname(file);
+            var fileName     = edp.path.basename(file, extName);
+            if (stat && stat.isDirectory()) {
+                ret = ret.concat(getJSFiles(absolutePath));
+            }
+            else {
+                ret.push({
+                    fileName: fileName,
+                    filePath: absolutePath
+                });
+            }
+        }
+    );
+    return ret;
 }
 
 /**
- * 处理文件
+ * 处理单个文件的minify
  *
- * @param  {File} sfile File实例
+ * @param  {string} srcFilePath   文件的路径
+ * @param  {string} suffixName minify后的文件后缀名
+ * @param  {string} outputDir  输出目录
  */
-function processFile(sfile) {
-    var targetFileExtName = sfile.extName;
-    var targetFileName = '';
-    var targetFilePath = '';
+function processFile(srcFilePath, suffixName, outputDir) {
+    var filePath = edp.path.resolve(CWD, srcFilePath);
+    var extName = edp.path.extname(srcFilePath);
+    var fileName = edp.path.basename(srcFilePath, extName);
+    if (!extName) {
+        edp.log.info(
+            '`%s`未能获取文件扩展名信息，默认使用js类型。',
+            fileName
+        );
+        extName = EXT.JS;
+        filePath += extName;
+    }
+    var sfile = new File({
+        fileName: fileName,
+        extName: extName,
+        filePath: filePath
+    });
 
-    var textname = sfile.extname;
-    var tfilename = '';
-    var tpath;
-    // 读取-o参数，可以没有，会进行默认处理
-    if (!opts.o) {
-        tfilename = sfile.filename + '.compiled';
-        tpath = path.resolve('.', tfilename + '.' + targetFileExtName);
-        console.log('未能获取到指定的输出文件，系统自动指定为：' + tpath);
+    sfile.on('NOTFOUNDFILE', function (d) {
+        invalidResource.push({
+            type: 'file',
+            path: d
+        });
+    });
+
+    if (sfile.read()) {
+        var targetFileName = sfile.fileName + suffixName;
+        var targetFileExtName = sfile.extName;
+        var targetFilePath = edp.path.dirname(sfile.filePath)
+            + require('path').sep + targetFileName + targetFileExtName;
+
+        if (outputDir) {
+            require('mkdirp').sync(edp.path.resolve(CWD, outputDir));
+            targetFilePath = outputDir + require('path').sep
+                + targetFileName + targetFileExtName;
+        }
+
+        var targetFile = new File({
+            fileName: targetFileName,
+            extName: targetFileExtName,
+            filePath: targetFilePath
+        });
+
+        targetFile.data = sfile.getMinifyData();
+        targetFile.write();
+    }
+}
+
+/**
+ * 处理文件夹
+ *
+ * @param  {string} srcFilePath   文件夹的路径
+ * @param  {string} suffixName minify后的文件后缀名
+ * @param  {string} outputDir  输出目录
+ */
+function processDir(srcFilePath, suffixName, outputDir) {
+    if (fs.existsSync(srcFilePath)) {
+        var stat = fs.statSync(srcFilePath);
+        if (stat && stat.isDirectory()) {
+            var files = getJSFiles(srcFilePath);
+            files.forEach(
+                function (file) {
+                    processFile(file.filePath, suffixName, outputDir);
+                }
+            );
+        }
+        else {
+            invalidResource.push({
+                type: 'dir',
+                path: srcFilePath
+            });
+        }
     }
     else {
-        tfilename = opts.o.replace(sfileextPlus, '');
-        tpath = path.resolve('.', opts.o);
+        invalidResource.push({
+            type: 'dir',
+            path: srcFilePath
+        });
     }
-    var targetFile = new File({
-        filename: tfilename,
-        extname: targetFileExtName,
-        path: tpath
-    });
-    targetFile.data = sfile.getMinifyData();
-    targetFile.write();
 }
 
 exports.start = function (args, opts) {
 
+    if (!args.length) {
+        edp.log.error('→ args not null');
+        return;
+    }
+
+    invalidResource = [];
+
+    // 输出目录
+    var outputDir = opts.o;
+
     // 生成minify文件的后缀名
-    var suffixName = opts.s || '.compiled';
+    var suffixName = opts.n || '.compiled';
+
+    // minify命令调用的类型，是文件(file)还是文件夹(dir)，默认为文件
+    var type = opts.t || 'file';
 
     while (args.length) {
-        // edp minify newtip.src.js    ,    aaa.js,    rrrer,   -o=output
         var arg = args.shift();
         if (arg !== ',') {
-
             // 把文件名的最后一个逗号去掉，
             // 这个逗号是args分隔得到的，不是文件名的一部分
             arg = arg.replace(/,$/, '');
 
-            var filePath = edp.path.resolve(CWD, arg);
-            var extName = edp.path.extname(arg);
-            var fileName = edp.path.basename(arg, extName);
-
-            if (!extName) {
-                edp.log.info(
-                    '`%s`未能获取文件扩展名信息，默认使用js类型。',
-                    fileName
-                );
-                extName = EXT.js;
-                filePath += extName;
-            }
-
-            var sfile = new File({
-                fileName: fileName,
-                extName: extName,
-                filePath: filePath
-            });
-
-            if (sfile.read()) {
-                var targetFileName = sfile.fileName + suffixName;
-                var targetFileExtName = sfile.extName;
-                var targetFilePath = edp.path.dirname(sfile.filePath)
-                    + require('path').sep + targetFileName + targetFileExtName;
-
-                var targetFile = new File({
-                    fileName: targetFileName,
-                    extName: targetFileExtName,
-                    filePath: targetFilePath
-                });
-
-                targetFile.data = sfile.getMinifyData();
-                targetFile.write();
+            // 把arg当文件夹处理
+            if (type === 'dir') {
+                processDir(arg, suffixName, outputDir);
 
             }
+            // 把arg当文件处理
+            else {
+                processFile(arg, suffixName, outputDir);
+            }
 
-
-            // setTimeout(
-            //     function () {
-            //         console.log(99);
-            //         sfile.emit('data', 'asssssss');
-            //     },
-            //     1000
-            // );
-            // sfile.on('data', function(data) {
-            //     console.log('Received data: ' + data);
-            // });
         }
     }
-}
+
+    if (invalidResource.length) {
+        invalidResource.forEach(
+            function (item) {
+                var relativePath = edp.path.relative(CWD, item.path);
+                edp.log.info('%s', relativePath);
+                edp.log.error('→ No such %s `%s`', item.type, relativePath);
+            }
+        );
+    }
+};
 
 if (module === require.main) {
     exports.start();
