@@ -1,0 +1,290 @@
+.ecl-test-list-ui-select {
+  font-size: 13px;
+  background: #FFF;
+  width: 154px;
+  height: 22px;
+  top: 1px;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  position: relative;
+  *top: 8px;
+  border: 1px solid #e3e3e3;
+  border-left: 1px solid #888888;
+  border-top: 1px solid #888888;
+  z-index: 10;
+}
+.ecl-test-list-ui-select .ecl-test-list-ui-select-box {
+  cursor: pointer;
+}
+.ecl-test-list-ui-select .ecl-test-list-ui-select-box .ecl-test-list-ui-select-value {
+  display: inline-block;
+  width: 134px;
+  padding: 2px 0 3px 28px;
+}
+.ecl-test-list-ui-select .ecl-test-list-ui-select-box span {
+  background: #fbfbfb url(http://s1.bdstatic.com/r/www/cache/static/global/img/icons_aea40f46.png) no-repeat -402px 5px;
+  width: 23px;
+  height: 22px;
+  display: inline-block;
+  position: absolute;
+  border-left: 1px solid #e3e3e3;
+  right: 0;
+  top: 0;
+}
+.ecl-test-list-ui-select .ecl-test-list-ui-select-box img {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+}
+.ecl-test-list-ui-select .ecl-test-list-ui-select-show {
+  visibility: hidden;
+  position: absolute;
+  *margin: -3px 0 0 -1px;
+  background: #FFF;
+  top: 24px;
+  *top: 27px;
+  left: -1px;
+  *left: 0;
+  width: 146px;
+  border: 1px solid #e3e3e3;
+  box-shadow: 1px 1px 3px #eee;
+  padding: 0 5px 0 3px;
+  cursor: pointer;
+  z-index: 10;
+}
+.ecl-test-list-ui-select .ecl-test-list-ui-select-show span {
+  display: inline-block;
+  padding: 4px 0;
+  border-bottom: 1px dashed #e3e3e3;
+  width: 100%;
+}
+.ecl-test-list-ui-select .ecl-test-list-ui-select-show span a {
+  display: block;
+  width: 141px;
+  _width: 78px;
+  padding: 2px 0;
+  padding-left: 7px;
+}
+.ecl-test-list-ui-select .ecl-test-list-ui-select-show span a:hover {
+  background: #288bff;
+  color: #FFF;
+}
+.ecl-test-list-ui-select .ecl-test-list-ui-select-show span .ecl-test-list-ui-select-select {
+  background: #288bff;
+  color: #FFF;
+}
+.ecl-ui-scrollbar-noselect {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+.ecl-ui-scrollbar {
+  width: 522px;
+  height: 215px;
+  background: #fff;
+  left: -10px;
+}
+.ecl-ui-scrollbar-panel {
+  margin-right: 10px;
+  width: 514px;
+  height: 215px;
+  overflow: hidden;
+}
+.ecl-ui-scrollbar-track {
+  float: right;
+  position: relative;
+  width: 10px;
+  height: 215px;
+  background: #F3F3F3;
+}
+.ecl-ui-scrollbar-thumb {
+  *font-size: 0;
+  position: absolute;
+  top: 0;
+  width: 8px;
+  height: 30px;
+  background: #fff;
+  cursor: default;
+  border: 1px solid #E1E1E1;
+}
+.ecl-ui-scrollbar-noscroll .ecl-ui-scrollbar-track {
+  display: none;
+}
+.ecl-ui-scrollbar-noscroll .ecl-ui-scrollbar-panel {
+  margin-right: 0;
+}
+.ecl-ui-scrollbar-disable .ecl-ui-scrollbar-thumb {
+  background: #EEE;
+}
+.ecl-ui-scrollbar-position-mode {
+  position: relative;
+  height: 215px;
+  overflow: hidden;
+}
+.ecl-ui-scrollbar-position-mode .ecl-ui-scrollbar-panel {
+  width: 514px;
+  position: absolute;
+  height: auto;
+}
+.ecl-ui-scrollbar-position-mode .ecl-ui-scrollbar-track {
+  float: none;
+  position: absolute;
+  right: 0;
+}
+.ecl-ui-scrollbar-main ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ecl-ui-scrollbar-main ul li {
+  line-height: 25px;
+  list-style-position: inside;
+  list-style-type: none;
+  padding-left: 75px;
+  border-bottom: 1px solid #f6f5f5;
+  background: url(http://wl.work.com/others1.png) no-repeat 15px 0;
+}
+.ecl-ui-scrollbar-main ul li span {
+  display: block;
+}
+.ecl-ui-scrollbar-main ul li.first {
+  color: red;
+  font-weight: bold;
+  background: url(http://wl.work.com/first.png) no-repeat 15px 0;
+}
+.ecl-test-list {
+  font-size: 14px;
+  width: 538px;
+}
+.ecl-test-list em {
+  color: #cc0000;
+}
+.ecl-test-list .ecl-test-list-wrap {
+  background: #fff;
+  padding: 7px 7px;
+  border: solid 1px #FAFAFA;
+}
+.ecl-test-list .ecl-test-list-title {
+  padding-bottom: 8px;
+  margin: 0;
+}
+.ecl-test-list .ecl-test-list-card {
+  box-shadow: 1px 1px 3px #EEE;
+  padding: 0 10px;
+  font-size: 13px;
+  background: #FAFAFA;
+}
+.ecl-test-list .ecl-test-list-card .ecl-test-list-search {
+  padding: 10px 0 0;
+  position: relative;
+  z-index: 10;
+}
+.ecl-test-list .ecl-test-list-card .ecl-test-list-search .ecl-test-list-search-unit {
+  display: block;
+  padding-right: 15px;
+  position: relative;
+  zoom: 1;
+  margin-bottom: 10px;
+}
+.ecl-test-list .ecl-test-list-card .ecl-test-list-search .ecl-test-list-search-unit .ecl-test-list-search-label {
+  padding-right: 10px;
+}
+.ecl-test-list .ecl-test-list-card .ecl-test-list-search .ecl-test-list-search-btn {
+  width: 60px;
+  padding: 1px 0 1px 0;
+  background: #41ACFF;
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid #41ACFF;
+  text-align: center;
+  position: absolute;
+  cursor: pointer;
+  top: 45px;
+  *top: 17px;
+  left: 240px;
+}
+.ecl-test-list .ecl-test-list-card .ecl-test-list-search .ecl-test-list-search-btn:hover {
+  border: 1px solid #2196ff;
+}
+.ecl-test-list .ecl-test-list-card .ecl-test-list-search .ecl-test-list-search-number {
+  display: inline-block;
+  padding: 3px 0;
+  width: 154px;
+  border: 1px solid #999;
+  border-bottom-color: #d8d8d8;
+  border-right-color: #d8d8d8;
+  outline: 0;
+  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  overflow: hidden;
+  z-index: 5;
+}
+.ecl-footer {
+  padding-top: 5px;
+  color: green;
+  font-size: 12px;
+}
+.ecl-test-list-info-desc {
+  padding: 10px 0;
+}
+.ecl-test-list-info-desc:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+  *zoom: 1;
+}
+.ecl-test-list-info-desc-left {
+  display: inline-block;
+  float: left;
+}
+.ecl-test-list-info-desc-left img {
+  float: left;
+}
+.ecl-test-list-info-desc-right {
+  float: right;
+  width: 437px;
+}
+.ecl-test-list-info-desc-right:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+  *zoom: 1;
+}
+.ecl-test-list-info-desc-right div {
+  font-weight: bold;
+}
+.ecl-test-list-info-desc-right span {
+  float: left;
+  width: 320px;
+  line-height: 20px;
+}
+.ecl-test-list-info-desc-right label {
+  float: left;
+  line-height: 20px;
+}
+.ecl-test-list-info-btn {
+  display: inline-block;
+  width: 60px;
+  background: #fbfbfb;
+  color: #333;
+  text-align: center;
+  border: 1px solid #bec1c6;
+  text-decoration: none;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.ecl-test-list-info-btn:hover {
+  border: 1px solid #2196ff;
+}

@@ -1,0 +1,147 @@
+{%*点击统计*%}
+{%$sessionid=$extData.sessionid%}
+{%$subqid=$extData.subqid%}
+{%$sid=$extData.sid%}
+{%$pssid=$extData.pssid%}
+
+{%strip%}
+
+<div class="ecl-test-list">
+    <h4 class="ecl-test-list-title">
+        <a target="_blank" class="c-title" href="{%$tplData.mainUrl|escape:'html'%}" tn="{%$extData.tn|escape:'html'%}">
+            {%foreach $tplData.title as $pipe%}
+                {%if $pipe eq "[em]"%}
+                    <em>
+                {%else if $pipe eq "[/em]"%}
+                    </em>
+                {%else%}
+                    {%$pipe|escape:'html'%}
+                {%/if%}
+            {%/foreach%}
+        </a>
+    </h4>
+    <div class="ecl-test-list-wrap">
+        <div class="ecl-test-list-card">
+            <div class="ecl-test-list-search">
+                <div class="ecl-test-list-search-unit">
+                    <label class="ecl-test-list-search-label">公司名称：</label>
+                    <div id="ecl-test-list-name" class="ecl-test-list-ui-select">
+                        <div class="ecl-test-list-ui-select-box">
+                            <img src="{%$tplData.companyIcon|escape:'html'%}"/>
+                            <div class="ecl-test-list-ui-select-value">
+                                {%$tplData.companyName|escape:'html'%}
+                            </div>
+                            <span></span>
+                        </div>
+                        <div class="ecl-test-list-u-select-show"></div>
+                    </div>
+                </div>
+                <div class="ecl-test-list-search-unit">
+                    <label class="ecl-test-list-search-label">快递单号：</label>
+                    <input class="ecl-test-list-search-number" type="text"/>
+                </div>
+                <a class="ecl-test-list-search-btn" href="{%$tplData.mpUrl|escape:'html'%}" target="_blank">查询</a>
+            </div>
+
+            <div id="ecl-ui-scrollbar" class="ecl-ui-scrollbar ecl-ui-scrollbar-position-mode">
+                <div class="ecl-ui-scrollbar-track">
+                    <i id="ecl-ui-scrollbar-thumb" class="ecl-ui-scrollbar-thumb"></i>
+                </div>
+                <div class="ecl-ui-scrollbar-panel">
+                    <div>
+                        <div id="ecl-ui-scrollbar-main" class="ecl-ui-scrollbar-main">
+                            <ul>
+                                <li class="first">
+                                    <span>11-22 09:27:00</span>
+                                    <span>北京邮政速递公司</span>
+                                </li>
+                                <li>
+                                    <span>11-22 09:27:00</span>
+                                    <span>北京邮政速递公司</span>
+                                </li>
+                                <li>
+                                    <span>11-22 09:27:00</span>
+                                    <span>北京邮政速递公司</span>
+                                </li>
+                                <li>
+                                    <span>11-22 09:27:00</span>
+                                    <span>北京邮政速递公司</span>
+                                </li>
+                                <li>
+                                    <span>11-22 09:27:00</span>
+                                    <span>北京邮政速递公司</span>
+                                </li>
+                                <li>
+                                    <span>11-22 09:27:00</span>
+                                    <span>北京邮政速递公司</span>
+                                </li>
+                                <li>
+                                    <span>11-22 09:27:00</span>
+                                    <span>北京邮政速递公司</span>
+                                </li>
+
+                                <li>
+                                    <span>11-22 09:27:00</span>
+                                    <span>北京邮政速递公司</span>
+                                </li>
+                                <li>
+                                    <span>11-22 09:27:00</span>
+                                    <span>北京邮政速递公司</span>
+                                </li>
+                                <li>
+                                    <span>11-22 09:27:00</span>
+                                    <span>北京邮政速递公司</span>
+                                </li>
+                                <li>
+                                    <span>11-22 09:27:00</span>
+                                    <span>北京邮政速递公司</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ecl-test-list-info-desc">
+                <div class="ecl-test-list-info-desc-left">
+                    <a class="OP_LOG_OTHERS" href="{%$item.lpUrl|escape:'html'%}" target="_blank" title="{%$item.titleAll|escape:'html'%}">
+                        <img src="http://wl.work.com/sto-logo.png" alt="{%$item.titleAll|escape:'html'%}" width="56" height="56"/>
+                    </a>
+                </div>
+                <div class="ecl-test-list-info-desc-right c-gap-left-small">
+                    <div>申通快递</div>
+                    <label>官方网站：</label>
+                    <span><a href="http://www.ems.com.cn" target="_blank">http://www.ems.com.cn</a></span>
+                    <label>客服电话：</label>
+                    <span>400-889-5543</span>
+                    <label>
+                        <a class="ecl-test-list-info-btn" href="" target="_blank">查询网点</a>
+                        <a class="ecl-test-list-info-btn" href="" target="_blank">查询价格</a>
+                        <a class="ecl-test-list-info-btn" href="" target="_blank">网上寄件</a>
+                        <a class="ecl-test-list-info-btn" href="" target="_blank">网点加盟</a>
+                        <a class="ecl-test-list-info-btn" href="" target="_blank">业务介绍</a>
+                        <a class="ecl-test-list-info-btn" href="" target="_blank">申通新闻</a>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class='ecl-footer'>
+    www.kuaidi100.com
+</div>
+
+{%/strip%}
+<script type="text/javascript" data-compress="off">
+    A.setup('TEST_DATA', {
+        sessionid: "{%$extData.sessionid%}",
+        originquery: "{%$extData.originquery%}",
+        sid: "{%$extData.sid%}",
+        subqid: "{%$extData.subqid%}",
+        pssid: "{%$extData.pssid%}",
+        servertime: "{%$tplData.servertime%}",
+        categoryid: "{%$extData.categoryid%}",
+        tn: "{%$extData.tn%}"
+    })
+</script>
