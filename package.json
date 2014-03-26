@@ -1,18 +1,17 @@
 {
   "name": "edp-minify",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "edp-minify =======",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "npm ln edp-core"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/ecomfe/edp-minify.git"
   },
   "dependencies": {
-    "edp-core": "~0.0.14",
+    "edp-core": "~1.0.7",
     "uglify-js": "~2.4.12",
     "html-minifier": "~0.5.4",
     "uglifycss": "~0.0.5",
