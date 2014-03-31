@@ -143,7 +143,7 @@ exports.start = function (args, opts) {
     CWD = process.cwd();
 
     if (!args.length) {
-        console.error( "See edp minify --help" );
+        console.error('See edp minify --help');
         return;
     }
 

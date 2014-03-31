@@ -76,7 +76,7 @@ function rmdir(dir) {
 
         fs.rmdirSync(dir);
     }
-};
+}
 
 describe('minify file test: ', function () {
     it('edp minify index.html', function (done) {
