@@ -9,7 +9,7 @@ var edp = require('edp-core');
 
 var File = require('./lib/File');
 
-var CWD = process.cwd();
+var CWD;
 
 var EXT = {
     JS: '.js'
@@ -140,8 +140,10 @@ function processDir(srcFilePath, suffixName, outputDir) {
 
 exports.start = function (args, opts) {
 
+    CWD = process.cwd();
+
     if (!args.length) {
-        edp.log.error('→ args not null');
+        console.error('See edp minify --help');
         return;
     }
 
